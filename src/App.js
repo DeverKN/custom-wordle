@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import WordleGame from './WordleGame';
+import { wordleBank, extraWords } from './WordBanks';
+import { randomArrayElement } from './Utilities';
+import { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+/*        
+<img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -16,7 +16,16 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a>*/
+
+const wordBank = wordleBank.concat(extraWords);
+
+function App() {
+  const [targetWord, setTargetWord] = useState(randomArrayElement(wordleBank).toUpperCase())
+  return (
+    <div className="App">
+      <header className="App-header">
+        <WordleGame targetWord={targetWord} wordLength={targetWord.length} wordBank={wordBank} numGuesses={5}/>
       </header>
     </div>
   );

@@ -1,3 +1,24 @@
+:root {
+  --wordle-white: #ffff;
+  --input-border-color: rgba(255, 255, 255, 0.671);
+  --input-border-size: 2px;
+  --input-border-style: solid;
+  --input-background-color: #121213;
+  --empty-background-color: #121213;
+  --absent-background-color: #3a3a3c;
+  --present-background-color: #c9b458;
+  --correct-background-color: #6aaa64;
+  --tile-font-size: 35px;
+  --animation-length: .425s;
+  --input-animation-length: .1s;
+  --input-grow-amount: .035;
+  --target-tile-size: 60px;
+  --target-tile-width: var(--target-tile-size);
+  --target-tile-height: var(--target-tile-size);
+  --tile-width: calc(var(--target-tile-width) - var(--input-border-size) * 2);
+  --tile-height: calc(var(--target-tile-height) - var(--input-border-size) * 2);
+}
+
 .App {
   text-align: center;
 }
@@ -14,7 +35,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--input-background-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,6 +49,284 @@
   color: #61dafb;
 }
 
+.Keyboard {
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  width: 450px;
+  gap: 5px;
+  flex-wrap: wrap;
+  user-select:none;
+}
+
+.Keyboard-Line {
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  width: 500px;
+  gap: 5px;
+  flex-wrap: wrap;
+  user-select:none;
+}
+
+.Wordle-Key {
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;  
+  border-radius: 5px;
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.Wordle-Key-Hidden {
+  background: #6e6e72;
+}
+
+.Wordle-Key-Absent {
+  background: var(--absent-background-color);
+}
+
+.Wordle-Key-Present {
+  background: var(--present-background-color);
+}
+
+.Wordle-Key-Correct {
+  background: var(--correct-background-color);
+}
+
+.Wordle-Tile-Input {
+  width: var(--tile-width);  
+  height: var(--tile-height);  
+  text-align: center;
+  background: var(--input-background-color);
+  border: 2px;
+  border-color: var(--input-border-color);
+  border-style: var(--input-border-style);
+  line-height: var(--tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Flip-Input {
+  width: var(--tile-width);  
+  height: var(--tile-height);  
+  text-align: center;
+  background: var(--input-background-color);
+  border: 2px;
+  border-color: var(--input-border-color);
+  border-style: var(--input-border-style);
+  line-height: var(--tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  animation: input-grow-shrink var(--input-animation-length) linear alternate;
+  animation-delay: 0;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Flip-Empty {
+  width: var(--tile-width);  
+  height: var(--tile-height);  
+  text-align: center;
+  background: var(--input-background-color);
+  border: 2px;
+  border-color: var(--absent-background-color);
+  border-style: var(--input-border-style);
+  line-height: var(--tile-height);
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Absent {
+  width: var(--target-tile-width);
+  height: var(--target-tile-height);
+  text-align: center;
+  background: var(--absent-background-color);
+  line-height: var(--target-tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Present {
+  width: var(--target-tile-width);
+  height: var(--target-tile-height);
+  text-align: center;
+  background: var(--present-background-color);
+  line-height: var(--target-tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Correct {
+  width: var(--target-tile-width);
+  height: var(--target-tile-height);
+  text-align: center;
+  background: var(--correct-background-color);
+  line-height: var(--target-tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Flip-Absent {
+  width: var(--tile-width);  
+  height: var(--tile-height);  
+  text-align: center;
+  background: var(--input-background-color);
+  border: 2px;
+  border-style: var(--input-border-style);
+  line-height: var(--tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  animation: flip-to-absent var(--animation-length) linear forwards;
+  animation-delay: inherit;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Flip-Present {
+  width: var(--tile-width);  
+  height: var(--tile-height);  
+  text-align: center;
+  background: var(--input-background-color);
+  border: 2px;
+  border-color: var(--input-border-color);
+  border-style: var(--input-border-style);
+  line-height: var(--tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  animation: flip-to-present var(--animation-length) linear forwards;
+  animation-delay: inherit;
+  font-size: var(--tile-font-size);
+}
+
+.Wordle-Tile-Flip-Correct {
+  width: var(--tile-width);
+  height: var(--tile-height);
+  text-align: center;
+  background: var(--input-background-color);
+  border: 2px;
+  border-color: var(--input-border-color);
+  border-style: var(--input-border-style);
+  line-height: var(--tile-height);  
+  vertical-align: middle;
+  color: var(--wordle-white);
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  animation: flip-to-correct var(--animation-length) linear forwards;
+  animation-delay: inherit;
+  font-size: var(--tile-font-size);
+}
+
+.Toast {
+  width: 250px;
+  height: 80px;
+  color: black;
+  background: white;
+  opacity: 1;
+  animation: fadeinout 1s linear forwards;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@keyframes flip-to-absent {
+  0% {
+    background: var(--input-background-color);
+  }
+  50% {
+    transform: rotateX(-90deg); 
+    background: var(--input-background-color);
+  }
+  51% {
+    background: var(--absent-background-color);
+    border-color: var(--absent-background-color);
+  }
+  100% {
+    transform: rotateX(0deg); 
+    background: var(--absent-background-color);
+    border-color: var(--absent-background-color);
+  }
+}
+
+@keyframes flip-to-present {
+  0% {
+    background: var(--input-background-color);
+  }
+  50% {
+    transform: rotateX(-90deg); 
+    background: var(--input-background-color);
+    border-color: var(--input-border-color);
+  }
+  51% {
+    background: var(--present-background-color);
+    border-color: var(--present-background-color);
+  }
+  100% {
+    transform: rotateX(0deg); 
+    background: var(--present-background-color);
+    border-color: var(--present-background-color);
+  }
+}
+
+@keyframes flip-to-correct {
+  0% {
+    background: var(--input-background-color);
+  }
+  50% {
+    transform: rotateX(-90deg); 
+    background: var(--input-background-color);
+    border-color: var(--input-border-color);
+  }
+  51% {
+    border-color: var(--correct-background-color);
+    background: var(--correct-background-color);
+  }
+  100% {
+    transform: rotateX(0deg); 
+    border-color: var(--correct-background-color);
+    background: var(--correct-background-color);
+  }
+}
+
+@keyframes input-grow-shrink {
+  0% {
+    border-width: var(--input-border-size);
+    line-height: var(--tile-height);
+    height: var(--tile-height);
+    width: var(--tile-width);
+  }
+  100% {
+    border-width: calc(var(--input-border-size) + calc(var(--target-tile-size) * var(--input-grow-amount)));
+    line-height: calc(var(--tile-height) - calc(calc(var(--target-tile-size) * var(--input-grow-amount)) * 2));
+    height: calc(var(--tile-height) - calc(calc(var(--target-tile-size) * var(--input-grow-amount)) * 2));
+    width: calc(var(--tile-width) - calc(calc(var(--target-tile-size) * var(--input-grow-amount)) * 2));
+  }
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%, 60% { opacity: .8; }
+  100% { opacity: 0; }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +335,5 @@
     transform: rotate(360deg);
   }
 }
+
+
