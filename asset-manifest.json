@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/custom-wordle/static/css/main.cf617463.css",
+    "main.js": "/custom-wordle/static/js/main.19b06867.js",
+    "static/js/787.da55d96e.chunk.js": "/custom-wordle/static/js/787.da55d96e.chunk.js",
+    "index.html": "/custom-wordle/index.html",
+    "main.cf617463.css.map": "/custom-wordle/static/css/main.cf617463.css.map",
+    "main.19b06867.js.map": "/custom-wordle/static/js/main.19b06867.js.map",
+    "787.da55d96e.chunk.js.map": "/custom-wordle/static/js/787.da55d96e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cf617463.css",
+    "static/js/main.19b06867.js"
+  ]
+}
