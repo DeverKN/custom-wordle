@@ -2,25 +2,28 @@ import { useEffect, useState } from "react";
 import ToastNotifier from "./ToastNotifier";
 import WordleKey from "./WordleKey";
 import WordleBoard from "./WordleBoard";
+import WordleLine from "./WordleLine";
 
 //TODO:
 //Align the keyboard
-//Make boxes change color when filled
+//Align the notifiction
 export default function WordleGame(props) {
-
-const {targetWord, wordLength, numGuesses, hard, wordBank} = props;
+    const {title, targetWord, wordLength, numGuesses, hard, wordBank} = props;
     const [lines, setLines] = useState([])
     const [newLine, setNewLine] = useState('')
     const [nextToastID, setNextToastID] = useState(0)
     const [toastMessages, setToastMessages] = useState([])
     const [revealedLetters, setRevealedLetters] = useState([])
+    const [boardSolved, setBoardSolved] = useState(false)
     const keyboardLetters = 'QWERTYUIOPASDFGHJKLZXCVBNM'.split("")
     const keyboardLetters1 = 'Q,W,E,R,T,Y,U,I,O,P'.split(",")
     const keyboardLetters2 = 'A,S,D,F,G,H,J,K,L'.split(",")
     const keyboardLetters3 = 'Z,X,C,V,B,N,M'.split(",")
 
     const handleKeyPress = ({key}) => {
-        if (outOfGuesses()) return
+        if (outOfGuesses() || boardSolved) {
+            return;
+        }
         console.log(targetWord)
         key = key.toUpperCase()
         if (key === 'BACKSPACE') {
@@ -42,6 +45,7 @@ const {targetWord, wordLength, numGuesses, hard, wordBank} = props;
             setNewLine("")
             if (solved) {
                 addToast('Correct!')
+                setBoardSolved(true)
             } else if (getGuessesLeft() <= 1) {
                 addToast(`Out of guesses! ${targetWord}`)
             }
@@ -72,7 +76,7 @@ const {targetWord, wordLength, numGuesses, hard, wordBank} = props;
                     return {success: false, errorMessage: `Must use all revealed letters`}
                 }
             }
-            if (wordBank.includes(wordToCheck.toLowerCase())) {
+            if (wordBank.includes(wordToCheck.toLowerCase()) || wordToCheck === targetWord) {
                 return  {success: true}
             } else {
                 return {success: false, errorMessage: `Not a valid word`}
@@ -82,9 +86,13 @@ const {targetWord, wordLength, numGuesses, hard, wordBank} = props;
         }
     }
 
+    const maxToastMessagesLength = 10;
+
     const addToast = (message) => {
-        setToastMessages(toastMessages.concat([{message: message, id: nextToastID}]))
-        setNextToastID(nextToastID + 1)
+        if (toastMessages.length < maxToastMessagesLength) {
+            setToastMessages(toastMessages.concat([{message: message, id: nextToastID}]))
+            setNextToastID(nextToastID + 1)
+        }
     }
 
     useEffect(() => {
@@ -117,7 +125,12 @@ const {targetWord, wordLength, numGuesses, hard, wordBank} = props;
     if (getGuessesLeft() > 0) boardLines = [...boardLines, ...Array(getGuessesLeft() - 1).fill(" ".repeat(wordLength)).map((value, index) => {
         return {id: lines.length + index + 1, text: value, newLine:false}
     })]
-    return <div style={{position:'relative'}}>
+
+    return <div style={{position:'relative', 
+                        display: 'flex', 
+                        flexDirection:'column', 
+                        justifyContent:'center'}}>
+            <WordleLine lineWord={title} targetWord={title} title={true}/>
             <ToastNotifier toastMessages={toastMessages} setToastMessages={setToastMessages}></ToastNotifier>
             <WordleBoard lines={boardLines} targetWord={targetWord}/>
             <div className='Keyboard'>
@@ -133,6 +146,7 @@ const {targetWord, wordLength, numGuesses, hard, wordBank} = props;
                 <WordleKey width='100' letter='&nbsp;&nbsp;⌫&nbsp;&nbsp;&nbsp;' type='Hidden'/>
             </div>
             </div>
+        
         </div>
 
 }

@@ -3,12 +3,14 @@ import ToastMessage from "./ToastMessage"
 export default function ToastNotifier(props) {
     const {toastMessages, setToastMessages} = props
     return <div style={{position:'absolute', 
-                        top:100, 
-                        right:-75, 
+                        zIndex: '100',
+                        top: `${(47.5 * (toastMessages.length)) + 60}px`,
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
                         display: 'flex', 
                         flexDirection:'column-reverse', 
                         justifyContent:'center', 
-                        width:'1000px',
+                        alignSelf: 'flex-start',
                         rowGap: '15px'}}>
     {toastMessages.map(({message, id}) => {
     return <ToastMessage message={message} key={id} removeMe={()=> {
