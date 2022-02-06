@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Custom Wordle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An open source world clone that lets you create and share custom wordle-esque games.  
+Running at https://deverkn.github.io/custom-wordle/
 
-## Available Scripts
+## Current Features
 
-In the project directory, you can run:
+### Custom Word Bank
+Chose your own word bank to select words from  
+Includes built in word banks for 1 - 21 letter words
 
-### `npm start`
+### Custom Guess Amount
+What it sounds like
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Custom Goal Word
+Pick a predetermined solution for playing against other people
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to use it
+All choices are represented as URL parameters  
+ex:`https://deverkn.github.io/custom-wordle/?{parameters_here}`  
+#### Options  
+title : Choose a custom title  
+(defaults to "YORDLE")
 
-### `npm test`
+num_guesses : The maximum number of guesses a player can make  
+(defaults to 5)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+word_bank_type : "Custom" if you want to use your own word bank or "Default" to use a built in word bank  
+(defaults to "Default")  
 
-### `npm run build`
+word_bank_length : If you used the Default word bank type use this to select the length of the words in the word bank, ranges from 1 to 21
+(defaults to 5, the same as Wordle) 
+Note: word banks past 15-ish start including compound words  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+word_bank: If you used the Custom word bank type use this to set the word bank words enter each word seperated by a comma  
+(ie. `?word_bank=dog,cat`)  
+Notes: there currently isn't any verification that all words in the word bank are the same length but if you use word of different the game will obviously break. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+word : Use this to set a custom target word, can either be a word or an index in the word bank (ie. `?word=5` would use the 6th word in the wordbank) (if this is left empty or the word given isn't in the word bank it uses a random word from the word bank)  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Upcoming Features
+Game creation GUI  
+Mobile interface (***technically*** it already works on mobile but ... don't)  
+Word bank verification  
+Seperate word banks for target words and guesses  
+Saving game parameters outside of URL
