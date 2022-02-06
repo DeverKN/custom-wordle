@@ -40,7 +40,7 @@ word : Use this to set a custom target word, can either be a word or an index in
 
 ## Examples
 
-Default: https://deverkn.github.io/custom-wordle/
+Default: https://deverkn.github.io/custom-wordle/  
 50 Guesses, 20 Letter Words: https://deverkn.github.io/custom-wordle/?title=WORDLE%20HELL&num_guesses=50&word_bank_type=Default&word_bank_length=20  
 1 Guess, Only 2 Words: https://deverkn.github.io/custom-wordle/?title=EZ&num_guesses=1&word_bank_type=custom&word_bank=dog,cat  
 (Hint: Look at the URL): https://deverkn.github.io/custom-wordle/?title=GENIUS?&num_guesses=1&word_bank_type=default&word_bank_length=5&word=foggy  
