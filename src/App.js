@@ -40,15 +40,16 @@ function App() {
       wordBank = require(`./words/${wordBankLength}-Letter-Words.json`);
     }
   } else {
-    wordBank = queryParams.get("word_bank").split(",")
-    wordBankLength = wordBank[0].length();
+    wordBank = queryParams.get("word_bank").split(",");
+    wordBankLength = wordBank[0].length;
+    if (wordBank.some((word) => word.length !== wordBankLength)) wordBank = wordleBank.concat(extraWords);
+    wordBankLength = wordBank[0].length;
   }
   //const wordBank = (queryParams.get("word_bank")
   const paramWord = queryParams.get("word")
   let word = ""
   if (paramWord !== null) {
-    console.log(paramWord);
-    if (!wordBank.includes(paramWord)) {
+    if (wordBank.includes(paramWord)) {
       word = paramWord.toUpperCase();
     } else {
       if (!isNaN(paramWord)) {
@@ -59,7 +60,6 @@ function App() {
       }
     }
   } else {
-    console.log("rand");
     word = randomArrayElement(wordBank).toUpperCase();
   }
   const title = (queryParams.get("title") ?? defaultTitle).toUpperCase()

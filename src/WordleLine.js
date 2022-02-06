@@ -64,6 +64,7 @@ export default function WordleLine(props) {
             gap:'6px'}
     
     if (title) css.marginBottom = 6;
+    if (title) css.marginTop = 6;
 
     return <div style={css}>{wordArray.map(({type, letter}, index) => {
         return <WordleTile text={letter} type={type} key={index} index={index} length={wordArray.length}/>
