@@ -38,6 +38,13 @@ Notes: there currently isn't any verification that all words in the word bank ar
 
 word : Use this to set a custom target word, can either be a word or an index in the word bank (ie. `?word=5` would use the 6th word in the wordbank) (if this is left empty or the word given isn't in the word bank it uses a random word from the word bank)  
 
+## Examples
+
+Default: https://deverkn.github.io/custom-wordle/
+50 Guesses, 20 Letter Words: https://deverkn.github.io/custom-wordle/?title=WORDLE%20HELL&num_guesses=50&word_bank_type=Default&word_bank_length=20
+1 Guess, Only 2 Words: https://deverkn.github.io/custom-wordle/?title=EZ&num_guesses=1&word_bank_type=custom&word_bank=dog,cat
+(Hint: Look at the URL): https://deverkn.github.io/custom-wordle/?title=GENIUS?&num_guesses=1&word_bank_type=default&word_bank_length=5&word=foggy
+
 ### Upcoming Features
 Game creation GUI  
 Mobile interface (***technically*** it already works on mobile but ... don't)  
