@@ -1,22 +1,10 @@
 import './App.css';
 import WordleGame from './WordleGame';
+import { WordleCreator } from "./WordleCreator";
 import { wordleBank, extraWords } from './WordBanks';
 import { randomArrayElement } from './Utilities';
 import { useState } from 'react';
 
-/*        
-<img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>*/
 const defaultTitle = 'YORDLE';
 //const maxGuesses = 9;
 const defaultGuesses = 5;
@@ -45,8 +33,10 @@ function App() {
     if (wordBank.some((word) => word.length !== wordBankLength)) wordBank = wordleBank.concat(extraWords);
     wordBankLength = wordBank[0].length;
   }
-  //const wordBank = (queryParams.get("word_bank")
-  const paramWord = queryParams.get("word")
+
+  let paramWord = queryParams.get("word")
+  const base64Word = queryParams.get("encoded") ?? false;
+  if (base64Word) paramWord = btoa(paramWord);
   let word = ""
   if (paramWord !== null) {
     if (wordBank.includes(paramWord)) {
@@ -64,11 +54,12 @@ function App() {
   }
   const title = (queryParams.get("title") ?? defaultTitle).toUpperCase()
   const numGuesses = /*Math.min(*/queryParams.get("num_guesses") ?? defaultGuesses/*, maxGuesses)*/
-  const [targetWord, setTargetWord] = useState(word)
+  /*const [targetWord, ] = useState(word)*/
   return (
     <div className="App">
       <header className="App-header">
-        <WordleGame title={title} targetWord={targetWord} wordLength={wordBankLength} wordBank={wordBank} numGuesses={numGuesses}/>
+        <WordleCreator/>
+        <WordleGame title={title} targetWord={word} wordLength={wordBankLength} wordBank={wordBank} numGuesses={numGuesses}/>
       </header>
     </div>
   );

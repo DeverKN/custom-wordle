@@ -8,6 +8,7 @@
   --absent-background-color: #3a3a3c;
   --present-background-color: #c9b458;
   --correct-background-color: #6aaa64;
+  --hidden-color: #6e6e72;
   --tile-font-size: 35px;
   --animation-length: .425s;
   --input-animation-length: .1s;
@@ -19,6 +20,7 @@
   --target-tile-height: var(--target-tile-size);
   --tile-width: calc(var(--target-tile-width) - var(--input-border-size) * 2);
   --tile-height: calc(var(--target-tile-height) - var(--input-border-size) * 2);
+  --wordle-font: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .App {
@@ -69,12 +71,12 @@
   vertical-align: middle;
   line-height: 40px;  
   border-radius: 5px;
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   font-size: 20px;
 }
 
 .Wordle-Key-Hidden {
-  background: #6e6e72;
+  background: var(--hidden-color);
 }
 
 .Wordle-Key-Absent {
@@ -100,7 +102,7 @@
   line-height: var(--tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   font-size: var(--tile-font-size);
 }
 
@@ -115,7 +117,7 @@
   line-height: var(--tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: input-grow-shrink var(--input-animation-length) linear alternate;
   animation-delay: 0;
   font-size: var(--tile-font-size);
@@ -130,7 +132,7 @@
   line-height: var(--target-tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: title-spin var(--title-animation-length) linear forwards;
   animation-delay: calc(var(--animation-index) * var(--title-animation-length));
   font-size: var(--tile-font-size);
@@ -145,7 +147,7 @@
   line-height: var(--target-tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: title-spin var(--title-animation-length) linear forwards;
   animation-delay: calc(var(--line-length) * var(--title-animation-length) + var(--title-animation-delay));
   font-size: var(--tile-font-size);
@@ -160,7 +162,7 @@
   line-height: var(--target-tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: title-spin-back var(--title-animation-length) linear forwards;
   animation-delay: calc(var(--line-length) * var(--title-animation-length) + var(--title-animation-delay));
   font-size: var(--tile-font-size);
@@ -177,7 +179,7 @@
   line-height: var(--tile-height);
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   font-size: var(--tile-font-size);
 }
 
@@ -189,7 +191,7 @@
   line-height: var(--target-tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   font-size: var(--tile-font-size);
 }
 
@@ -201,7 +203,7 @@
   line-height: var(--target-tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   font-size: var(--tile-font-size);
 }
 
@@ -213,7 +215,7 @@
   line-height: var(--target-tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   font-size: var(--tile-font-size);
 }
 
@@ -227,7 +229,7 @@
   line-height: var(--tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: flip-to-absent var(--animation-length) linear forwards;
   animation-delay: calc(var(--animation-index) * var(--animation-length));
   font-size: var(--tile-font-size);
@@ -244,7 +246,7 @@
   line-height: var(--tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: flip-to-present var(--animation-length) linear forwards;
   animation-delay: calc(var(--animation-index) * var(--animation-length));
   font-size: var(--tile-font-size);
@@ -261,7 +263,7 @@
   line-height: var(--tile-height);  
   vertical-align: middle;
   color: var(--wordle-white);
-  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--wordle-font);
   animation: flip-to-correct var(--animation-length) linear forwards;
   animation-delay: calc(var(--animation-index) * var(--animation-length));
   font-size: var(--tile-font-size);
@@ -409,4 +411,112 @@
   }
 }
 
+.RulesPopUp {
+  background-color: var(--input-background-color);
+  border: 3px solid var(--wordle-white);
+  border-radius: 5px;
+  font-family: var(--wordle-font);
+  color: var(--wordle-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  z-index: 10;
+}
+
+.RuleInputBox {
+  background-color: var(--absent-background-color);
+  border: 2px solid var(--wordle-white);
+  font-family: var(--wordle-font);
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 1px;
+  margin-top: 3px;
+  max-height: 22px;
+  color: var(--wordle-white);
+}
+
+.RuleInputBox:focus {
+  outline: none !important;
+  background-color: var(--absent-background-color);
+  border: 3px solid var(--wordle-white);
+  margin: 0px;
+  margin-top: 2px;
+  color: var(--wordle-white);
+}
+
+.RuleInputBox::selection {
+  background-color: var(--input-border-color);
+}
+
+.RuleSlider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  border-radius: 5px; 
+  width: 100%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: var(--wordle-white); /* Grey background */
+  outline: none; /* Remove outline */
+}
+
+.WordleTileSlider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  border-radius: 5px; 
+  width: 150px; /* Full-width */
+  height: 10px; /* Specified height */
+  background: var(--wordle-white); /* Grey background */
+  outline: none; /* Remove outline */
+}
+
+.WordleTileThumb {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+  border-radius: 2px;
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+}
+
+.WordleTileSlider::-webkit-slider-thumb {
+  /*opacity: 0;*/
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 2px; 
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--present-background-color); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.RuleSlider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  border-radius: 2px; 
+  width: 25px; /* Set a specific slider handle width */
+  height: 25px; /* Slider handle height */
+  background: var(--correct-background-color); /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.WordleTileInputLine {
+  margin-top: 5px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.WordleInputTile {
+  border: 0px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--wordle-white);
+  font: var(--wordle-font);
+  width: 30px;
+  height: 30px;
+}
 

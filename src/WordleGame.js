@@ -4,9 +4,6 @@ import WordleKey from "./WordleKey";
 import WordleBoard from "./WordleBoard";
 import WordleLine from "./WordleLine";
 
-//TODO:
-//Align the keyboard
-//Align the notifiction
 export default function WordleGame(props) {
     const {title, targetWord, wordLength, numGuesses, hard, wordBank} = props;
     const [lines, setLines] = useState([])
@@ -21,6 +18,7 @@ export default function WordleGame(props) {
     const keyboardLetters3 = 'Z,X,C,V,B,N,M'.split(",")
 
     const handleKeyPress = ({key}) => {
+        console.log(key)
         if (outOfGuesses() || boardSolved) {
             return;
         }
@@ -141,12 +139,11 @@ export default function WordleGame(props) {
                 {keyboardLetters2.map(keyboardMap)}
             </div>
             <div className='Keyboard-Line'>
-                <WordleKey width='100' letter='&nbsp;ENTER&nbsp;' type='Hidden'/>
+                <WordleKey width='100' letter='&nbsp;ENTER&nbsp;' type='Hidden' handleKeyPress={handleKeyPress}/>
                 {keyboardLetters3.map(keyboardMap)}
-                <WordleKey width='100' letter='&nbsp;&nbsp;⌫&nbsp;&nbsp;&nbsp;' type='Hidden'/>
+                <WordleKey width='100' letter='&nbsp;&nbsp;⌫&nbsp;&nbsp;&nbsp;' type='Hidden' handleKeyPress={()=>handleKeyPress({key:'BACKSPACE'})}/>
             </div>
             </div>
-        
         </div>
 
 }
