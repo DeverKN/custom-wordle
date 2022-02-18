@@ -3,7 +3,6 @@ import WordleGame from './WordleGame';
 import { WordleCreator } from "./WordleCreator";
 import { wordleBank, extraWords } from './WordBanks';
 import { randomArrayElement } from './Utilities';
-import { useState } from 'react';
 
 const defaultTitle = 'YORDLE';
 //const maxGuesses = 9;
@@ -15,6 +14,7 @@ const maxWordLength = 21;
 function App() {
   const queryParams = new URLSearchParams(window.location.search)
   //const wordBank = queryParams.get("wordBank") ?? 
+  const create = (queryParams.get("create") ?? false)
   const wordBankType = (queryParams.get("word_bank_type") ?? 'default').toLowerCase()
   let wordBank = [];
   let wordBankLength = 0;
@@ -58,8 +58,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <WordleCreator/>
-        <WordleGame title={title} targetWord={word} wordLength={wordBankLength} wordBank={wordBank} numGuesses={numGuesses}/>
+        {create && <WordleCreator/>}
+        <WordleGame title={title} targetWord={word} wordLength={wordBankLength} wordBank={wordBank} numGuesses={numGuesses} active={!create}/>
       </header>
     </div>
   );

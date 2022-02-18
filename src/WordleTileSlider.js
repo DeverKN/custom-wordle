@@ -1,7 +1,7 @@
-const WordleTileSlider = ({value, setValue, id, min, max, ...otherProps}) => {
+const WordleTileSlider = ({value, setValue, id, min, max, magicRatio, magicOffset, ...otherProps}) => {
 
     const getThumbLocation = (value) => {
-        return {y:6.5, x: ((parseInt(value) / max) * 136) - 5}
+        return {y:6.5, x: ((parseInt(value) / max) * magicRatio) - magicOffset}
     }
 
     const thumbLoc = getThumbLocation(value)

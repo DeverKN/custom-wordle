@@ -5,7 +5,7 @@ import WordleBoard from "./WordleBoard";
 import WordleLine from "./WordleLine";
 
 export default function WordleGame(props) {
-    const {title, targetWord, wordLength, numGuesses, hard, wordBank} = props;
+    const {title, targetWord, wordLength, numGuesses, hard, wordBank, active} = props;
     const [lines, setLines] = useState([])
     const [newLine, setNewLine] = useState('')
     const [nextToastID, setNextToastID] = useState(0)
@@ -18,11 +18,10 @@ export default function WordleGame(props) {
     const keyboardLetters3 = 'Z,X,C,V,B,N,M'.split(",")
 
     const handleKeyPress = ({key}) => {
-        console.log(key)
+        if (!active) return
         if (outOfGuesses() || boardSolved) {
             return;
         }
-        console.log(targetWord)
         key = key.toUpperCase()
         if (key === 'BACKSPACE') {
             setNewLine(newLine.substring(0, newLine.length - 1))
@@ -53,7 +52,6 @@ export default function WordleGame(props) {
     }
 
     const checkLetters = (wordToCheck, targetWord) => {
-        console.log('Check' + wordToCheck)
         return wordToCheck.split("").map((letter, index) => {
             if (targetWord[index] === letter) {
                 return {letter: letter, type: 'Correct'}

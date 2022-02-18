@@ -12,6 +12,8 @@ const WordleTileInputBox = ({text, setText, maxLength}) => {
 
     text = text + "_".repeat(Math.max(0, maxLength - text.length));
 
+    text = text.slice(0, maxLength)
+
     const moveCaret = (newLoc, newText = text) => {
         const leftFixedCaret = Math.max(0, newLoc);
         const rightFixedCaret = Math.min(newText.length - 1, leftFixedCaret)

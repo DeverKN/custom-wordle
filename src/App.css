@@ -21,6 +21,7 @@
   --tile-width: calc(var(--target-tile-width) - var(--input-border-size) * 2);
   --tile-height: calc(var(--target-tile-height) - var(--input-border-size) * 2);
   --wordle-font: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  user-select: none;
 }
 
 .App {
@@ -73,6 +74,10 @@
   border-radius: 5px;
   font-family: var(--wordle-font);
   font-size: 20px;
+}
+
+.Wordle-Key:hover {
+  cursor:pointer;
 }
 
 .Wordle-Key-Hidden {
@@ -412,6 +417,7 @@
 }
 
 .RulesPopUp {
+  padding: 10px;
   background-color: var(--input-background-color);
   border: 3px solid var(--wordle-white);
   border-radius: 5px;
@@ -420,6 +426,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: absolute;
   z-index: 10;
 }
@@ -480,8 +487,12 @@
   height: 25px; /* Slider handle height */
 }
 
+.WordleTileThumb:hover {
+  cursor:pointer;
+ }
+
 .WordleTileSlider::-webkit-slider-thumb {
-  /*opacity: 0;*/
+  opacity: 0;
   -webkit-appearance: none; /* Override default look */
   appearance: none;
   border-radius: 2px; 
@@ -519,4 +530,47 @@
   width: 30px;
   height: 30px;
 }
+
+.WordleInputTile:hover {
+  cursor:pointer;
+ }
+
+.WordleInputClickBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--wordle-white);
+  font: var(--wordle-font);
+  background: var(--correct-background-color);
+  margin: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  user-select: none;
+}
+
+.WordleInputClickBox:hover {
+  cursor:pointer;
+ }
+
+ .WordleTileButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--wordle-white);
+  font: var(--wordle-font);
+  background: var(--correct-background-color);
+  margin: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 2px;
+  user-select: none;
+  text-decoration: none;
+}
+
+.WordleTileButton:hover {
+  cursor:pointer;
+ }
+
+
 
