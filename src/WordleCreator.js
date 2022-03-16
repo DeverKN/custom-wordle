@@ -14,7 +14,7 @@ const WordleCreator = () => {
     const [customWordToggle, setCustomWordToggle] = useState(false);
 
     const createWordle = (title, numGuesses, wordLength, customWord) =>{ 
-      let path = `?title=${title}&num_guesses=${numGuesses}&word_length=${wordLength}&word_bank_type=default`; 
+      let path = `?title=${title.split('_')[0]}&num_guesses=${numGuesses}&word_bank_length=${wordLength}&word_bank_type=default`; 
       if (customWord !== "_") {
           path += `&word=${customWord}`
       }

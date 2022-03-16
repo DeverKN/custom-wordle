@@ -20,7 +20,6 @@ function App() {
   let wordBankLength = 0;
   if (wordBankType === 'default') {
     wordBankLength = Math.min(Math.max((queryParams.get("word_bank_length") ?? defaultWordLength), minWordLength), maxWordLength)
-    console.log(wordBankLength)
     const originalWordleWordLength = 5;
     if (wordBankLength === originalWordleWordLength) {
       wordBank = wordleBank.concat(extraWords);
@@ -39,7 +38,7 @@ function App() {
   if (base64Word) paramWord = btoa(paramWord);
   let word = ""
   if (paramWord !== null) {
-    if (wordBank.includes(paramWord)) {
+    if (wordBank.includes(paramWord.toLowerCase())) {
       word = paramWord.toUpperCase();
     } else {
       if (!isNaN(paramWord)) {
