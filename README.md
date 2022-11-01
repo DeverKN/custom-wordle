@@ -1,6 +1,6 @@
 # Custom Wordle
 
-An open source world clone that lets you create and share custom wordle-esque games.  
+An open source wordle clone that lets you create and share custom wordle-esque games.  
 Running at https://deverkn.github.io/custom-wordle/
 
 ## Current Features
